@@ -1,13 +1,22 @@
 import "./App.css";
-import { Button } from "./components/ui/button";
 
-function App() {
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "@/pages/login";
+import Callback from "@/pages/callback";
+
+export default function App() {
   return (
-    <main>
-      <h1 className="bg-red-500">test tailwind</h1>
-      <Button>test button</Button>
-    </main>
+    <Router>
+      <Routes>
+        {/* Route for the Login page */}
+        <Route path="/login" element={<Login />} />
+
+        {/* Route for the Callback page (handles GitHub OAuth redirect) */}
+        <Route path="/callback" element={<Callback />} />
+
+        {/* Default route (redirects to /login if no path matches) */}
+        <Route path="/" element={<Login />} />
+      </Routes>
+    </Router>
   );
 }
-
-export default App;
